@@ -51,3 +51,87 @@
 #include <iostream>
 using namespace std;
 
+void printFibonacci(int n) 
+{
+    if (n <= 0) 
+    {
+        cout << "Error: Number of terms must be a positive integer." << endl;
+        return;
+    }
+
+    int first = 0, second = 1, next;
+
+    cout << "Fibonacci sequence: ";
+    for (int i = 0; i < n; ++i) 
+    {
+        if (i <= 1)
+            next = i; // First two terms are 0 and 1
+        else 
+        {
+            next = first + second;
+            first = second;
+            second = next;
+        }
+        cout << next << " ";
+    }
+    cout << endl;
+}   
+void checkFibonacci(int number) 
+{
+    if (number < 0) 
+    {
+        cout << "Error: Number must be a non-negative integer." << endl;
+        return;
+    }
+
+    int first = 0, second = 1, next = 0;
+
+    while (next < number) 
+    {
+        next = first + second;
+        first = second;
+        second = next;
+    }
+
+    if (next == number || number == 0) 
+    {
+        cout << number << " is a Fibonacci number." << endl;
+    } 
+    else 
+    {
+        cout << number << " is NOT a Fibonacci number." << endl;
+    }
+}   
+int main() 
+{
+    int choice;
+    cout << "Choose an option:\n";
+    cout << "1. Print the first N terms of the Fibonacci sequence\n";
+    cout << "2. Check if a number belongs to the Fibonacci sequence\n";
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
+
+    switch (choice) 
+    {
+        case 1: 
+        {
+            int n;
+            cout << "How many terms? ";
+            cin >> n;
+            printFibonacci(n);
+        }
+        break;
+        case 2: 
+        {
+            int number;
+            cout << "Enter a number to check: ";
+            cin >> number;
+            checkFibonacci(number);
+        }
+        break;
+        default:
+            cout << "Invalid choice. Please enter 1 or 2." << endl;
+    }
+
+    return 0;
+}   
