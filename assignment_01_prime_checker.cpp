@@ -37,3 +37,30 @@
 #include <iostream>
 using namespace std;
 
+void isPrime(int number) {
+    if (number < 2) {
+        cout << number << " is NOT a prime number." << endl;
+        return;
+    }
+
+    // Check for factors from 2 to the square root of the number
+    for (int i = 2; i * i <= number; ++i) {
+        if (number % i == 0) {
+            cout << number << " is NOT a prime number." << endl;
+            return;
+        }
+    }
+
+    // If no factors were found, the number is prime
+    cout << number << " is a prime number." << endl;
+}
+int main() {
+    int number;
+    cout << "Enter a number: ";
+    cin >> number;
+
+    isPrime(number);
+
+    return 0;
+}
+
