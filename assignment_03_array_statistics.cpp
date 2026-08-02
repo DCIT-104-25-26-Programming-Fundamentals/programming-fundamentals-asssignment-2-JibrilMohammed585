@@ -1,40 +1,44 @@
 // =============================================================================
-// PROGRAMMING FUNDAMENTALS — Assignment 3
+// PROGRAMMING FUNDAMENTALS — Assignment 2
 // =============================================================================
 //
-// TASK: Array Statistics Calculator
+// TASK: Student Grade System
 //
-// Write a C++ program that reads a collection of numbers from the user
-// and computes key statistical values using separate functions.
+// Write a C++ program that reads a student's score and outputs the
+// corresponding letter grade based on the scale below.
+//
+// Grading Scale:
+//   Score 80 – 100  →  Grade A
+//   Score 70 – 79   →  Grade B
+//   Score 60 – 69   →  Grade C
+//   Score 50 – 59   →  Grade D
+//   Score below 50  →  Grade F
 //
 // -----------------------------------------------------------------------------
-// EXPECTED INPUT / OUTPUT EXAMPLE
+// EXPECTED INPUT / OUTPUT EXAMPLES
 // -----------------------------------------------------------------------------
 //
-//   How many numbers? 5
-//   Enter number 1: 4
-//   Enter number 2: 7
-//   Enter number 3: 2
-//   Enter number 4: 9
-//   Enter number 5: 1
+//   Enter student score (0-100): 85
+//   Grade: A
 //
-//   Results:
-//   Sum:     23
-//   Average: 4.6
-//   Maximum: 9
-//   Minimum: 1
+//   Enter student score (0-100): 73
+//   Grade: B
+//
+//   Enter student score (0-100): 45
+//   Grade: F
+//
+//   Enter student score (0-100): 110
+//   Error: Score must be between 0 and 100.
 //
 // -----------------------------------------------------------------------------
 // REQUIREMENTS
 // -----------------------------------------------------------------------------
-// - You MUST implement each calculation in its own function (see scaffold).
-// - You may NOT use any standard library functions like accumulate(), max(),
-//   or min(). Implement the logic yourself using loops.
-// - N must be a positive integer. If the user enters 0 or a negative number,
-//   print an error message and stop.
+// - You MUST use functions (see scaffold below).
+// - Validate the score inside getGrade(). If it is out of range, return '\0'
+//   (null character) and let main() print the error message.
+// - Use if / else if / else to determine the grade.
 //
 
-//
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
@@ -42,3 +46,34 @@
 #include <iostream>
 using namespace std;
 
+
+char getGrade(int score) {
+    if (score < 0 || score > 100) {
+        return '\0'; // Invalid score
+    } else if (score >= 80) {
+        return 'A';
+    } else if (score >= 70) {
+        return 'B';
+    } else if (score >= 60) {
+        return 'C';
+    } else if (score >= 50) {
+        return 'D';
+    } else {
+        return 'F';
+    }
+}
+
+int main() {
+    int score;
+    cout << "Enter student score (0-100): ";
+    cin >> score;
+
+    char grade = getGrade(score);
+    if (grade == '\0') {
+        cout << "Error: Score must be between 0 and 100." << endl;
+    } else {
+        cout << "Grade: " << grade << endl;
+    }
+
+    return 0;
+}
